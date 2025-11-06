@@ -1,5 +1,7 @@
 // 引入Three
+import GUI from "lil-gui";
 import * as THREE from "three";
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import Stats from 'three/examples/jsm/libs/stats.module';
 // 基本场景设置
 // 1.创建场景(容器)
@@ -35,7 +37,26 @@ scene.add(new THREE.AmbientLight(0x666666));
 
 const dirLight = new THREE.DirectionalLight(0xaaaaaa);
 // dirLight.position.set(0, 12, 0);
-dirLight.position.set(5, 12, 8);
+// dirLight.position.set(5, 12, 8);
+// 基础场景-定向光影
+dirLight.shadow.mapSize.width = 2048;
+dirLight.shadow.mapSize.height = 2048;
+dirLight.shadow.camera.near = 0.5;
+dirLight.shadow.camera.far = 20;
+dirLight.shadow.camera.top = 10;
+dirLight.shadow.camera.bottom = -10;
+dirLight.shadow.camera.left = -10;
+dirLight.shadow.camera.right = 10;
+dirLight.shadow.bias = -0.0001;
+// 性能优化-定向光影
+// dirLight.shadow.mapSize.width = 1024;
+// dirLight.shadow.mapSize.height = 1024;
+// dirLight.shadow.camera.near = 0.1;
+// dirLight.shadow.camera.far = 30;
+// dirLight.shadow.camera.top = 15;
+// dirLight.shadow.camera.bottom = -15;
+// dirLight.shadow.camera.left = -15;
+// dirLight.shadow.camera.right = 15;
 dirLight.castShadow = true;
 // 重要：必须将灯光添加到场景中
 scene.add(dirLight);
@@ -67,12 +88,55 @@ groundMesh.rotation.set(Math.PI / -2, 0, 0);
 groundMesh.receiveShadow = true;
 scene.add(groundMesh);
 
+// 增加轨道控制器
+const orbitControls = new OrbitControls(camera, renderer.domElement);
+// 增加阻尼效果
+orbitControls.enableDamping = true;
+orbitControls.dampingFactor = 0.05;
+
+const gui = new GUI();
+
+const props = {
+    cubeSpeed: 0.01,
+    torusSpeed: 0.01,
+    cubeRotationX: true,
+    cubeRotationY: true,
+    cubeRotationZ: true,
+    torusRotationX: true,
+    torusRotationY: true,
+    torusRotationZ: true,
+    reset: () => {
+        props.cubeSpeed = 0.01;
+        props.torusSpeed = 0.01;
+        gui.updateDisplay();
+    }
+};
+
+// 添加速度控制
+gui.add(props, 'cubeSpeed', -0.2, 0.2, 0.01).name('立方体速度');
+gui.add(props, 'torusSpeed', -0.2, 0.2, 0.01).name('环面结速度');
+
+// 添加旋转轴控制
+gui.add(props, 'cubeRotationX').name('立方体X轴');
+gui.add(props, 'cubeRotationY').name('立方体Y轴');
+gui.add(props, 'cubeRotationZ').name('立方体Z轴');
+
+gui.add(props, 'torusRotationX').name('环面结X轴');
+gui.add(props, 'torusRotationY').name('环面结Y轴');
+gui.add(props, 'torusRotationZ').name('环面结Z轴');
+
+// 重置按钮
+gui.add(props, 'reset').name('重置参数');
+
+// 修改动画函数
 let step = 0;
 // 添加动画
 function animate() {
-    requestAnimationFrame(animate);
+    // 保持轨道控制器更新
+    orbitControls.update();
     stats.update();
     renderer.render(scene, camera);
+    requestAnimationFrame(animate);
 
     step += 0.04;
     cube.rotation.x += 0.01;
@@ -83,6 +147,17 @@ function animate() {
     torusKnotMesh.rotation.x -= 0.01;
     torusKnotMesh.rotation.y += 0.01;
     torusKnotMesh.rotation.z -= 0.01;
+
+    // 立方体旋转
+    if (props.cubeRotationX) cube.rotation.x += props.cubeSpeed;
+    if (props.cubeRotationY) cube.rotation.y += props.cubeSpeed;
+    if (props.cubeRotationZ) cube.rotation.z += props.cubeSpeed;
+
+    // 环面结旋转
+    if (props.torusRotationX) torusKnotMesh.rotation.x -= props.torusSpeed;
+    if (props.torusRotationY) torusKnotMesh.rotation.y += props.torusSpeed;
+    if (props.torusRotationZ) torusKnotMesh.rotation.z -= props.torusSpeed;
 }
+
 animate();
 

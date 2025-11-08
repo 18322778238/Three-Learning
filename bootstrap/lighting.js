@@ -28,8 +28,7 @@ export const initLighting = (scene, { disableShadows }) => {
   // 设置阴影贴图的分辨率
   dirLight.shadow.mapSize.width = 2048
   dirLight.shadow.mapSize.height = 2048
-  // 设置阴影模糊半径
-  dirLight.shadow.radius = 4
+  
   // 设置阴影偏移量
   dirLight.shadow.bias = -0.00005
 

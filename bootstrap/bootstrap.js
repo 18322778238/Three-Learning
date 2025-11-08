@@ -22,8 +22,8 @@ export const initScene = ({ backgroundColor, fogColor, disableShadows, disableLi
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
     // 创建WebGL渲染器，开启抗锯齿
     const renderer = new THREE.WebGLRenderer({ antialias: true })
-    // 设置输出编码为sRGB
-    renderer.outputColorSpace = THREE.sRGBEncoding
+    // 设置输出编码为SRGB
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
     // 启用阴影映射
     renderer.shadowMap.enabled = true
     // 设置阴影类型为VSM阴影

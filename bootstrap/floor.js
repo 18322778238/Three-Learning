@@ -3,7 +3,7 @@ import * as THREE from 'three'
 // 创建一个无限大的平面作为地板
 export const foreverPlane = (scene) => {
   // 创建巨大的平面几何体
-  const geo = new THREE.PlaneBufferGeometry(10000, 10000)
+  const geo = new THREE.PlaneGeometry(10000, 10000)
   // 创建Lambert材质（无光泽表面）
   const mat = new THREE.MeshLambertMaterial({
     color: 0xffffff // 白色
@@ -29,7 +29,7 @@ export const floatingFloor = (scene, size) => {
   // 设置尺寸，默认为6
   const s = size ? size : 6
   // 创建立方体几何体作为地板，细分10份
-  const geo = new THREE.BoxBufferGeometry(s, 0.25, s, 10, 10, 10)
+  const geo = new THREE.PlaneGeometry(s, 0.25, s, 10, 10, 10)
   // 创建Standard材质（PBR材质）
   const mat = new THREE.MeshStandardMaterial({
     color: 0xdddddd // 浅灰色

@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { initOrbitControls } from '../controller/orbit-controller'
-import { initLighting } from './lighting'
 import { onResize } from '../util/update-on-resize'
+import { initLighting } from './lighting'
 
 // 导出一个初始化场景的函数，接受配置参数
 export const initScene = ({ backgroundColor, fogColor, disableShadows, disableLights, disableDefaultControls }) => {
@@ -11,7 +11,7 @@ export const initScene = ({ backgroundColor, fogColor, disableShadows, disableLi
     const scene = new THREE.Scene()
     // 如果提供了背景色，设置场景背景色
     if (backgroundColor) {
-      scene.backgroundColor = backgroundColor
+      scene.background = backgroundColor
     }
     // 如果提供了雾效颜色，创建雾效
     if (fogColor) {
@@ -23,11 +23,12 @@ export const initScene = ({ backgroundColor, fogColor, disableShadows, disableLi
     // 创建WebGL渲染器，开启抗锯齿
     const renderer = new THREE.WebGLRenderer({ antialias: true })
     // 设置输出编码为sRGB
-    renderer.outputEncoding = THREE.sRGBEncoding
+    renderer.outputColorSpace = THREE.sRGBEncoding
     // 启用阴影映射
     renderer.shadowMap.enabled = true
     // 设置阴影类型为VSM阴影
-    renderer.shadowMap.type = THREE.VSMShadowMap
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
+    // renderer.shadowMap.type = THREE.VSMShadowMap
     // 设置清除颜色
     renderer.setClearColor(backgroundColor)
 
@@ -48,7 +49,7 @@ export const initScene = ({ backgroundColor, fogColor, disableShadows, disableLi
     if (!disableLights ?? false) {
       initLighting(scene, { disableShadows })
     }
-    
+
     // 调用回调函数，传递创建的场景对象
     fn({ scene, camera, renderer, orbitControls })
   }

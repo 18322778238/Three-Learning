@@ -37,9 +37,9 @@ export const initializeHelperControls = (gui, scene) => {
   const props = propertiesObject(scene);
   const helpers = gui.addFolder("Helpers");
   //   helpers.add('axisHelperEnabled', propertiesObject)
-  helpers.add(props.axisHelper, "toggle").name("Toggle AxesHelper");
-  helpers.add(props.gridHelper, "toggle").name("Toggle GridHelper");
-  helpers.add(props.polarGridHelper, "toggle").name("Toggle PolarGridHelper");
+  helpers.add(props.axisHelper, "toggle").name("切换坐标轴辅助");
+  helpers.add(props.gridHelper, "toggle").name("切换网格辅助");
+  helpers.add(props.polarGridHelper, "toggle").name("切换极坐标网格辅助");
 
   helpers.close();
 };

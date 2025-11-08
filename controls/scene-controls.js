@@ -50,9 +50,9 @@ export const initializeSceneControls = (gui, scene, fogEnabled, isOpen) => {
         .add(props, 'backGround', ['White', 'Black', 'Null', 'Color', 'Texture', 'Cubemap'])
         .onChange((event) => handleBackgroundChange(event, scene))
     // 材质覆盖控制
-    sceneControls.add(props.overrideMaterial, 'toggle').name('Toggle Override Material')
+    sceneControls.add(props.overrideMaterial, 'toggle').name('切换覆盖材质')
     // 环境贴图控制
-    sceneControls.add(props.environment, 'toggle').name('Toggle Environment')
+    sceneControls.add(props.environment, 'toggle').name('切换环境贴图')
     // 雾效控制
     if (fogEnabled) {
         const fogColor = new THREE.Color(0xffffff)

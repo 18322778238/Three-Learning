@@ -29,13 +29,16 @@ export const floatingFloor = (scene, size) => {
   // 设置尺寸，默认为6
   const s = size ? size : 6
   // 创建立方体几何体作为地板，细分10份
-  const geo = new THREE.PlaneGeometry(s, 0.25, s, 10, 10, 10)
+  const geo = new THREE.PlaneGeometry(s, s, 10, 10)
   // 创建Standard材质（PBR材质）
   const mat = new THREE.MeshStandardMaterial({
-    color: 0xdddddd // 浅灰色
+    color: 0xdddddd, // 浅灰色
+    side: THREE.DoubleSide
   })
   // 创建网格对象
   const mesh = new THREE.Mesh(geo, mat)
+  // 旋转平面使其水平（绕X轴旋转-90度）
+  mesh.rotation.x = -Math.PI / 2
   // 设置位置（向下移动2个单位，向后移动1个单位）
   mesh.position.set(0, -2, -1)
   // 启用接收阴影

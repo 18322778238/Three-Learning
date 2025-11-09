@@ -28,6 +28,7 @@ initScene(props)(({ scene, camera, renderer, orbitControls }) => {
 
     // 在场景中添加浮空平面，大小为10个单位
     floatingFloor(scene, 10)
+    // foreverPlane(scene, 10)
 
     // 动画循环
     function animate() {

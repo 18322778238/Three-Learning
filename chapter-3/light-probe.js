@@ -1,10 +1,10 @@
 // 光探针
 import * as THREE from 'three'
+import { LightProbeGenerator } from 'three/examples/jsm/lights/LightProbeGenerator'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { initScene } from '../bootstrap/bootstrap.js'
-import { LightProbeGenerator } from 'three/examples/jsm/lights/LightProbeGenerator'
-import { stats } from '../util/stats'
 import { visitChildren } from '../util/modelUtil.js'
+import { stats } from '../util/stats'
 
 const props = {
   backgroundColor: 0xcccccc,

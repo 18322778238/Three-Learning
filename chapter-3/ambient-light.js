@@ -1,8 +1,9 @@
-import * as THREE from 'three'
+// 使用基本灯光
 import GUI from 'lil-gui'
+import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { initializeAmbientLightControls } from '../controls/lights-controls.js'
 import { initScene } from '../bootstrap/bootstrap.js'
+import { initializeAmbientLightControls } from '../controls/lights-controls.js'
 import { stats } from '../util/stats'
 
 // 定义场景属性对象：背景色为浅灰色，禁用默认灯光
@@ -43,6 +44,7 @@ initScene(props)(({ scene, camera, renderer, orbitControls }) => {
   }
 
   const colorHolder = new THREE.Color(0xffffff)
+  // 使用基本灯光
   const light = new THREE.AmbientLight(colorHolder, 1)
   scene.add(light)
   // 初始化环境光的GUI控制面板

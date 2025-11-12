@@ -1,13 +1,13 @@
 // 发光的矩形表面
-import * as THREE from 'three'
 import GUI from 'lil-gui'
-import { floatingFloor } from '../bootstrap/floor.js'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { initScene } from '../bootstrap/bootstrap.js'
+import * as THREE from 'three'
 import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js'
 import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js'
-import { stats } from '../util/stats'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { initScene } from '../bootstrap/bootstrap.js'
+import { floatingFloor } from '../bootstrap/floor.js'
 import { visitChildren } from '../util/modelUtil.js'
+import { stats } from '../util/stats'
 
 const props = {
   backgroundColor: 0xcccccc,
@@ -84,7 +84,6 @@ function setupRectGui(colorHolder, light, folderName) {
   const rectAreaFolder = gui.addFolder(folderName)
   rectAreaFolder.addColor(colorHolder, 'color').onChange((c) => light.color.setStyle(c))
   rectAreaFolder.add(light, 'intensity', 0, 15, 0.1)
-  rectAreaFolder.add(light, 'decay', 0, 5, 0.01)
   rectAreaFolder.add(light, 'width', 0, 20, 0.01)
   rectAreaFolder.add(light, 'height', 0, 20, 0.01)
   rectAreaFolder.add(light.position, 'x', -30, 30, 0.1).name('positionX')

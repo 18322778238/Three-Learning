@@ -15,7 +15,7 @@ const propertiesObject = (scene) => ({
         }
     },
     // backGround: 背景设置，默认白色
-    backGround: 'White',
+    backGround: '白色',
     // environment: 切换环境贴图，用于全局光照和反射
     environment: {
         toggle: () => {
@@ -44,10 +44,11 @@ const fogProperties = (fog) => ({
 // 初始化场景控制器
 export const initializeSceneControls = (gui, scene, fogEnabled, isOpen) => {
     const props = propertiesObject(scene)
-    const sceneControls = gui.addFolder('Scene')
+    const sceneControls = gui.addFolder('场景设置')
     // 背景控制
     sceneControls
-        .add(props, 'backGround', ['White', 'Black', 'Null', 'Color', 'Texture', 'Cubemap'])
+        .add(props, 'backGround', ['白色', '黑色', '无背景', '纯色', '纹理', '立方体贴图'])
+        .name('背景类型')
         .onChange((event) => handleBackgroundChange(event, scene))
     // 材质覆盖控制
     sceneControls.add(props.overrideMaterial, 'toggle').name('切换覆盖材质')
@@ -59,10 +60,10 @@ export const initializeSceneControls = (gui, scene, fogEnabled, isOpen) => {
         const fog = new THREE.Fog(fogColor, 1, 20)
         scene.fog = fog
         const fogProps = fogProperties(fog)
-        const fogControls = sceneControls.addFolder('Fog')
-        fogControls.addColor(fogProps, 'color')
-        fogControls.add(fogProps, 'near', 0, 10, 0.1)
-        fogControls.add(fogProps, 'far', 0, 100, 0.1)
+        const fogControls = sceneControls.addFolder('雾效设置')
+        fogControls.addColor(fogProps, 'color').name('雾颜色')
+        fogControls.add(fogProps, 'near', 0, 10, 0.1).name('雾开始距离')
+        fogControls.add(fogProps, 'far', 0, 100, 0.1).name('雾结束距离')
 
         fogControls.onChange(() => {
             fog.color = fogColor.setHex(fogProps.color)
@@ -76,32 +77,31 @@ export const initializeSceneControls = (gui, scene, fogEnabled, isOpen) => {
 // 背景变化处理函数
 const handleBackgroundChange = (setting, scene) => {
     switch (setting) {
-        case 'White':
+        case '白色':
             scene.background = new THREE.Color(0xffffff)
             break
-        case 'Black':
+        case '黑色':
             scene.background = new THREE.Color(0x000000)
             break
-        case 'Null':
+        case '无背景':
             scene.background = null
             break
-        case 'Color':
+        case '纯色':
             scene.background = new THREE.Color(0x44ff44)// 绿色
             break
-        case 'Texture':
+        case '纹理':
             textureLoader.load('/assets/textures/wood/abstract-antique-backdrop-164005.jpg', (loaded) => {
                 loaded.encoding = THREE.sRGBEncoding
                 scene.background = loaded
                 scene.environment = null // 清除环境贴图避免冲突
             })
             break
-        case 'Cubemap':
+        case '立方体贴图':
             textureLoader.load('/assets/equi.jpeg', (loaded) => {
                 loaded.mapping = THREE.EquirectangularReflectionMapping
                 scene.background = loaded
                 scene.environment = loaded  // 同时设置为环境贴图
             })
-
             break
         default:
             break

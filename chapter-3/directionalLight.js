@@ -1,10 +1,10 @@
-import * as THREE from 'three'
 import GUI from 'lil-gui'
+import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { initScene } from '../bootstrap/bootstrap.js'
 import { intializeRendererControls } from '../controls/renderer-control.js'
-import { stats } from '../util/stats'
 import { visitChildren } from '../util/modelUtil.js'
+import { stats } from '../util/stats'
 
 const props = {
   backgroundColor: 0xcccccc,
@@ -28,27 +28,33 @@ const gui = new GUI()
 //   });
 // };
 
+// 瀑布模型加载
 const loadWaterfall = (scene) => {
   const loader = new GLTFLoader()
   loader.load('/assets/gltf/waterfall/scene.gltf', (loadedObject) => {
     // the nested
+    // 深度访问模型结构，获取实际的模型节点
     const loadedScene = loadedObject.scene.children[0].children[0].children[0]
+    // 递归遍历所有子对象，为每个几何体启用阴影接收和投射
     visitChildren(loadedScene, (c) => {
       c.receiveShadow = true
       c.castShadow = true
     })
+    // 绕 X 轴旋转 -90 度来正确摆放模型
     loadedScene.rotateX(-0.5 * Math.PI)
     scene.add(loadedScene)
   })
 }
 
 initScene(props)(({ scene, camera, renderer, orbitControls }) => {
+  // 设置阴影映射类型为 PCF 软阴影，提供更柔和的阴影边缘
   renderer.shadowMap.type = THREE.PCFSoftShadowMap
   camera.position.set(-4, 14, 4)
   orbitControls.update()
 
   loadWaterfall(scene)
 
+  // 创建方向光，模拟太阳光
   const directionalLight = new THREE.DirectionalLight()
   const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight)
   const shadowCameraHelper = new THREE.CameraHelper(directionalLight.shadow.camera)
@@ -73,6 +79,7 @@ initScene(props)(({ scene, camera, renderer, orbitControls }) => {
   scene.add(light)
   scene.add(directionalLight.target)
 
+  // 方向光设置
   directionalLight.penumbra = 0.4
   directionalLight.position.set(10, 14, 5)
   directionalLight.distance = 0
@@ -107,12 +114,13 @@ initScene(props)(({ scene, camera, renderer, orbitControls }) => {
 
   const shadowCameraFolder = gui.addFolder('ShadowCamera')
   shadowCameraFolder.add(shadowCameraHelper, 'visible').name('shadow-helper')
-  shadowCameraFolder.add(directionalLight.shadow.camera, 'fov', 0, 100, 0.1)
-  shadowCameraFolder.add(directionalLight.shadow.camera, 'near', -20, 20, 0.1)
-  shadowCameraFolder.add(directionalLight.shadow.camera, 'far', -20, 50, 0.1)
-  shadowCameraFolder.add(directionalLight.shadow.camera, 'right', -20, 20, 0.1)
-  shadowCameraFolder.add(directionalLight.shadow.camera, 'left', -20, 20, 0.1)
-  shadowCameraFolder.add(directionalLight.shadow.camera, 'top', -20, 20, 0.1)
+  shadowCameraFolder.add(directionalLight.shadow.camera, 'zoom', 0, 5, 0.1)
+  shadowCameraFolder.add(directionalLight.shadow.camera, 'near', 0.1, 50, 0.1)
+  shadowCameraFolder.add(directionalLight.shadow.camera, 'far', 1, 100, 0.1)
+  shadowCameraFolder.add(directionalLight.shadow.camera, 'right', -50, 50, 0.1)
+  shadowCameraFolder.add(directionalLight.shadow.camera, 'left', -50, 50, 0.1)
+  shadowCameraFolder.add(directionalLight.shadow.camera, 'top', -50, 50, 0.1)
+  shadowCameraFolder.add(directionalLight.shadow.camera, 'bottom', -50, 50, 0.1)
 
   // directionalLight.shadow.camera.near = 1;
   // directionalLight.shadow.camera.far = 25;

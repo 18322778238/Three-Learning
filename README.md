@@ -49,3 +49,54 @@
 | visible   | 确定指示灯是关闭还是点亮。如果此属性设置为 true(默认），则此灯将打开，如果设置为 false，则该灯将关闭。                                                                                                         |
 | decay     | 指示离光源越远，光强度减小的量。衰减为 2 会产生更逼真的灯光，默认值为 1。只有当 physicallyCorrectLights 属性是在 WebGLRenderer 上设置的。                                                                      |
 | power     | 指在物理正确模式下渲染时灯光的功率（通过将 physicalyCorrectLights 属性设置为打开来启用此功能 WebGLRenderer）。此特性以流明和默认值为单位测量是 4*Math.PI.。功率也与强度特性直接相关（(power = intensity * 4π） |
+
+
+#### Three.js 材料
+- MeshBasicMaterial：这是一种基本材料，可以用来为几何图形赋予简单的颜色或显示几何图形的线框。此材质不受灯光影响。
+- MeshDepthMaterial：这是一种使用与相机的距离来确定如何为网格着色的材质。
+- MeshNormalMaterial：这是一种简单的材质，将面的颜色基于其法线向量。
+- MeshLambertMaterial：这是一种将照明考虑在内的材质，用于创建暗淡、无光泽的对象。
+- MeshPhongMaterial：这是一种同时考虑照明的材质，可用于创建有光泽的对象。
+- MeshStandardMaterial：这是一种使用基于物理的渲染来渲染对象的材质。对于基于物理的渲染，使用物理正确的模型来确定光如何与曲面交互。这样可以创建更精确、更逼真的对象。
+- MeshPhysicalMaterial：这是MeshStandardMaterial的扩展，允许对反射进行更多控制。
+- MeshToonMaterial：这是MeshPhongMaterial的扩展，它试图使对象看起来像手绘的。
+- ShadowMaterial：这是一种可以接收阴影的特定材质，但除此之外，它将被渲染为透明材质。
+- ShaderMaterial：此材质允许您指定着色器程序，以直接控制顶点的位置和像素的颜色。
+- LineBasicMaterial：这是一种可以在THREE.Line几何图形上使用的材料，用于创建彩色线条。
+- LineDashMaterial：这与LineBasicMaterial相同，但此材质也允许您创建虚线效果
+
+#### 常见的材料特性
+- **Basic properties **基础属性：这些是您最常使用的属性。有了这些属性，您例如，可以控制对象的不透明度、是否可见以及如何引用（按ID或自定义名称）。
+- Blending properties 混合特性：每个对象都有一组混合特性。这些属性定义如何将材质的每个点的颜色与其背后的颜色相结合。
+- Advanced properties 高级属性：几个高级属性控制低级别WebGL上下文的方式渲染对象。在大多数情况下，您不需要处理这些属性。
+
+#### 基础属性
+- id：用于标识材质，并在创建材质时指定。对于第一种材质，此值从0开始，对于创建的每一种附加材质，该值都会增加1。
+- uuid：这是一个唯一生成的ID，在内部使用。
+- name：可以为具有此特性的材质指定名称。这可以用于调试目的。
+- opacity：这定义了对象的透明度。将其与transparentproperty一起使用。此属性的范围是从0到1。
+- transparent：如果设置为true，Three.js将以设置的不透明度渲染此对象。如果设置为false，则对象将不是透明的，只是颜色更浅。如果使用使用alpha（透明度）通道的纹理，则此属性也应设置为true。
+- visible：这定义了该材料是否可见。如果将此设置为false，则不会在场景中看到对象。
+- side：使用此特性，可以定义材质应用于几何图形的哪一侧。默认值为THREE.Frontside，将材质应用于对象的正面（外部）。您也可以将其设置为THRE.BackSide，将其应用于背面（内部），或者THREE.DoubleSide，适用于双方。
+- needsUpdate：当Three.js创建一个材质时，它会将其转换为一组WebGL指令。如果您希望在材料中所做的更改也能更新WebGL说明，则可以将此属性设置为true。
+- colorWrite：如果设置为false，则不会显示此材质的颜色（实际上，您将创建不可见的对象，从而遮挡其后面的对象）。
+- flatShading：用于确定是否使用平面着色渲染此材质。使用平面着色时，组成对象的各个三角形将分别渲染，而不会组合到平滑曲面中。
+- lights：这是一个布尔值，用于确定此材质是否受灯光影响。默认值为true。
+- premultipliedAlpha：这将更改对象透明度的渲染方式。默认值为false。
+- dithering：这会将抖动效果应用于渲染材质。这可以用来避免捆扎。默认值为false。
+- shadowSide：这与side属性一样，但决定了面的哪一侧投射阴影。如果未设置，则遵循side属性上设置的值。
+- vertexColors：使用此属性，可以定义要应用于每个顶点的各个颜色。如果设置为true，则在渲染中使用顶点上的任何颜色集，而如果设置为false，则不使用顶点的颜色。
+- fog：此属性确定此材质是否受全局雾设置的影响。这不会在操作中显示，但如果设置为false，则我们在第2章“组成Three.js场景的基本组件”中看到的全局雾将被禁用。
+
+#### 混合特性
+- blending：这决定了该对象上的材质如何与背景混合。这个正常模式为THREE.NormalBlending，仅显示顶层。
+- blendSrc：除了使用标准混合模式外，您还可以创建自定义混合通过设置blendsrc、blenddst和blendequivation来设置模式。此属性定义如何对象（源）被混合到背景（目的地）中。默认的THREE.SrcAlphaFactor设置使用alpha（透明度）通道进行混合。
+- blendSrcAlpha：这是blendSrc的透明度。默认值为null。
+- blendDst：此属性定义在混合中如何使用背景（目的地）并且默认为THRE.OneMinusSrcAlphaFactor，这意味着此属性使用源的alpha通道进行混合，但使用1（源的alpha通道）作为值。
+- blendDstAlpha：这是blendDst的透明度。默认值为null。
+- blendEquation：它定义了如何使用blendsrc和blenddst值。这个默认情况是添加它们（AddEquation）。使用这三个属，您可以创建拥有自定义混合模式。
+
+#### 高级属性
+- depthTest：这是一个高级的WebGL属性。使用此属性，您可以启用或禁用GL_DEPTH_TEST参数。此参数控制像素的深度用于确定新像素的值。通常情况下，你不需要改变这一点。更多信息可以在我们前面提到的OpenGL规范中找到。 depthWrite：这是另一个内部属性。此属性可用于确定此材质是否会影响WebGL深度缓冲区。如果将对象用于二维覆盖（例如，集线器），您应该将此属性设置为false。不过，通常情况下，你不应该需要更改此属性。
+- depthFunc：此函数用于比较像素的深度。这对应于glDepthFunc来自WebGL规范。多边形偏移、多边形偏移因子和多边形偏移单位：使用这些属性，可以控制POLYGON_OFFSET_FILL WebGL功能。这些通常不需要。要详细解释它们的作用，可以查看OpenGL规范。
+- Alphatest：此值可以设置为特定值（0到1）。每当像素具有alpha时值小于此值，则不会绘制。您可以使用此属性删除一些与透明度相关的工件。可以将此材质的精度设置为以下值之一WebGL值：高p、中p或低p。

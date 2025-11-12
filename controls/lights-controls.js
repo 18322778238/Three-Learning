@@ -9,11 +9,14 @@ export const initializeAmbientLightControls = (gui, light) => {
         intensity: light.intensity,
     };
 
-    const ambienLightFolder = gui.addFolder("Ambient Light");
+    const ambienLightFolder = gui.addFolder("环境光");
     ambienLightFolder
         .add(ambientLightProps, "intensity", 0, 5, 0.1)
+        .name("光照强度")
         .onChange((i) => (light.intensity = i));
-    ambienLightFolder.addColor(ambientLightProps, "color").onChange((c) => {
-        light.color.setStyle(c);
-    });
+    ambienLightFolder.addColor(ambientLightProps, "color")
+        .name("光照颜色")
+        .onChange((c) => {
+            light.color.setStyle(c);
+        });
 };

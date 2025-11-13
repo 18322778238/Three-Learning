@@ -1,3 +1,4 @@
+// 网格物理材质
 import * as THREE from 'three'
 import { bootstrapMaterialScene } from './util/standard-scene'
 import { initializeGuiMeshPhysicalMaterial } from '../controls/material-controls'

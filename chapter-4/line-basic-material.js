@@ -1,3 +1,4 @@
+// 线-基础材质
 import * as THREE from 'three'
 import { bootstrapMaterialScene } from './util/standard-scene'
 import { initializeGuiLineBasicMaterial } from '../controls/material-controls'

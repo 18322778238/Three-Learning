@@ -1,3 +1,4 @@
+// 多材料
 import * as THREE from 'three'
 import { initScene } from '../bootstrap/bootstrap'
 import { intializeRendererControls } from '../controls/renderer-control'

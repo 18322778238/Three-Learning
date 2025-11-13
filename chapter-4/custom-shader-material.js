@@ -1,3 +1,4 @@
+// 自定义着色器材质
 import * as THREE from 'three'
 import { initScene } from '../bootstrap/bootstrap'
 import { intializeRendererControls } from '../controls/renderer-control'

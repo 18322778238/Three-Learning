@@ -1,3 +1,4 @@
+// 着色器材质顶点
 import * as THREE from 'three'
 import { initScene } from '../bootstrap/bootstrap'
 import { intializeRendererControls } from '../controls/renderer-control'

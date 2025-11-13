@@ -1,3 +1,4 @@
+// 模型模板
 import * as THREE from 'three'
 import { initScene } from '../bootstrap/bootstrap'
 import { floatingFloor } from '../bootstrap/floor'

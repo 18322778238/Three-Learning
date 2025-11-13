@@ -1,3 +1,4 @@
+// 网格基础材质
 import * as THREE from 'three'
 import { bootstrapMaterialScene } from './util/standard-scene'
 import { initializeGuiMeshBasicMaterial } from '../controls/material-controls'

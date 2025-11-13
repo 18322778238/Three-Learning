@@ -1,3 +1,4 @@
+// 网格卡通材质
 import * as THREE from 'three'
 import { bootstrapMaterialScene } from './util/standard-scene'
 import { initializeGuiMeshToonMaterial } from '../controls/material-controls'

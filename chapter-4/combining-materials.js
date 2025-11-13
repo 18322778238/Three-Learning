@@ -1,3 +1,4 @@
+// 组合材料
 import * as THREE from 'three'
 import { initScene } from '../bootstrap/bootstrap'
 import { intializeRendererControls } from '../controls/renderer-control'
@@ -19,7 +20,6 @@ const props = {
 
 const gui = new GUI()
 
-// 组合材料
 initScene(props)(({ scene, camera, renderer, orbitControls }) => {
   camera.position.set(-3, 8, 2)
   camera.near = 4

@@ -1,3 +1,4 @@
+// 网格阴影材质
 import * as THREE from 'three'
 import { bootstrapMaterialScene } from './util/standard-scene'
 

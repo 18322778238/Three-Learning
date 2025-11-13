@@ -1,3 +1,4 @@
+// 网格法线材质
 import * as THREE from 'three'
 import { initializeMeshNormalMaterial } from '../controls/material-controls'
 import { bootstrapMaterialScene } from './util/standard-scene'

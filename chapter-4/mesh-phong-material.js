@@ -1,3 +1,4 @@
+// 网格-冯氏材质
 import * as THREE from 'three'
 import { bootstrapMaterialScene } from './util/standard-scene'
 import { initializeGuiMeshPhongMaterial } from '../controls/material-controls'

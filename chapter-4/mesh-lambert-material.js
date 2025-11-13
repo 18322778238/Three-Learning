@@ -1,3 +1,4 @@
+// 网格-朗伯材质
 import * as THREE from 'three'
 import { bootstrapMaterialScene } from './util/standard-scene'
 import { initializeGuiMeshLambertMaterial } from '../controls/material-controls'

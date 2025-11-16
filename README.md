@@ -100,3 +100,45 @@
 - depthTest：这是一个高级的WebGL属性。使用此属性，您可以启用或禁用GL_DEPTH_TEST参数。此参数控制像素的深度用于确定新像素的值。通常情况下，你不需要改变这一点。更多信息可以在我们前面提到的OpenGL规范中找到。 depthWrite：这是另一个内部属性。此属性可用于确定此材质是否会影响WebGL深度缓冲区。如果将对象用于二维覆盖（例如，集线器），您应该将此属性设置为false。不过，通常情况下，你不应该需要更改此属性。
 - depthFunc：此函数用于比较像素的深度。这对应于glDepthFunc来自WebGL规范。多边形偏移、多边形偏移因子和多边形偏移单位：使用这些属性，可以控制POLYGON_OFFSET_FILL WebGL功能。这些通常不需要。要详细解释它们的作用，可以查看OpenGL规范。
 - Alphatest：此值可以设置为特定值（0到1）。每当像素具有alpha时值小于此值，则不会绘制。您可以使用此属性删除一些与透明度相关的工件。可以将此材质的精度设置为以下值之一WebGL值：高p、中p或低p。
+
+#### 高级材料
+- THREE.MeshLambertMaterial： 一种用于粗糙外观表面的材料
+- THREE.MeshPhongMaterial：一种用于闪亮表面的材料
+- THREE.MeshToonMaterial：以卡通般的方式渲染网格
+- THREE.ShadowMaterial：只显示投射的阴影的材质，材质否则为透明
+- THREE.MeshStandardMaterial：一种多功能的材料，可以用来代表许多不同种类的表面
+- THREE.ShaderMaterial：一种您可以自己定义如何通过编写自己的着色器来渲染对象的材质
+- THREE.MeshPhysicalMaterial：类似于 THREE.MeshStandardMaterial ，但为更像真实世界的表面提供了额外的特性
+
+#### THREE.Material 的属性
+- wireframe ：这将将材质呈现为线框。这对于调试的目的来说非常好。
+- shading：这定义了着色的应用方式。可能的值为THREE.SSmoothShading和THREE.FlathShading。此材质的示例中未启用此属性。例如，请查看THREE.eshNormalMaterial部分。
+- vertexColors：可以使用此特性定义要应用于每个顶点的各个颜色。请看THRE.LineBasicMaterial部分中的LineBasicMaterial：示例，在该示例中，我们使用此属性为线的各个部分上色
+- fog：这将确定该材质是否受全局雾设置的影响
+
+#### THRE.ShaderMaterial特定的属性
+- fragmentShader： 此着色器定义了传入的每个像素的颜色。在这里，您需要传递片段着色器程序的字符串值。
+- vertextShader： 此着色器允许您更改传入的每个顶点的位置。在这里，您需要传入顶点着色器程序的字符串值。
+- uniforms： 这允许您将信息发送到着色器。相同的信息被发送到每个顶点和片段。
+defines： 将自定义键值对转换为#定义代码片段。使用这些片段，您可以在着色器程序中设置一些额外的全局变量，或者定义您自己的自定义全局常量。
+- attributes： 这些可以在每个顶点和片段之间改变。它们通常用于传递与位置和正常相关的数据。如果要使用此属性，则需要提供有关几何图形的所有顶点的信息。
+- lights： 这就决定了是否应该将灯光数据传递到着色器中。默认为false。
+- vertexShader：这将在几何图形的每个顶点上运行。您可以使用此着色器来通过在周围移动顶点的位置来变换几何图形。
+- fragmentShader：这将在几何图形的每个片段上运行。在碎片着色器中，我们返回应该为这个特定片段显示的颜色。
+
+#### 使用几何图形
+- THREE.CircleGeometry                      圆形几何
+- THREE.RingGeometry                        环几何
+- THREE.PlaneGeometry                       平面几何
+- THREE.ShapeGeometry                       形状几何
+- THREE.BoxGeometry                         盒子几何
+- THREE.SphereGeometry                      球体几何
+- THREE.CylinderGeometry                    圆柱几何
+- THREE.ConeGeometry                        锥几何
+- THREE.TorusGeometry                       圆环几何
+- THREE.TorusKnotGeometry                   环结几何
+- THREE.PolyhedronGeometry                  多面体几何
+- THREE.IcosahedronGeometry                 二十面体几何
+- THREE.OctahedronGeometry                  八面体几何
+- THREE.TetraHedronGeometry                 四面体几何
+- THREE.DodecahedronGeometry                十二面体几何

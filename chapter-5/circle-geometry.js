@@ -20,10 +20,10 @@ const props = {
   geometry,
   provideGui: (gui, mesh) => {
     const folder = gui.addFolder('THREE.CircleGeometry')
-    folder.add(circleProps, 'radius', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(circleProps)))
-    folder.add(circleProps, 'segments', 0, 50, 1).onChange(() => updateMesh(mesh, updateGeometry(circleProps)))
-    folder.add(circleProps, 'thetaStart', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(circleProps)))
-    folder.add(circleProps, 'thetaLength', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(circleProps)))
+    folder.add(circleProps, 'radius', 0, 10, 0.01).name('半径').onChange(() => updateMesh(mesh, updateGeometry(circleProps)))
+    folder.add(circleProps, 'segments', 0, 50, 1).name('分割').onChange(() => updateMesh(mesh, updateGeometry(circleProps)))
+    folder.add(circleProps, 'thetaStart', 0, 10, 0.01).name('起始角度').onChange(() => updateMesh(mesh, updateGeometry(circleProps)))
+    folder.add(circleProps, 'thetaLength', 0, 10, 0.01).name('结束角度').onChange(() => updateMesh(mesh, updateGeometry(circleProps)))
   }
 }
 

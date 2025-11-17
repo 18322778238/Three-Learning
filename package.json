@@ -16,7 +16,8 @@
     "@types/three": "^0.181.0",
     "lil-gui": "^0.21.0",
     "three": "^0.181.0",
-    "three-custom-shader-material": "^6.4.0"
+    "three-custom-shader-material": "^6.4.0",
+    "three-stdlib": "^2.36.1"
   },
   "devDependencies": {
     "vite": "^7.2.1"

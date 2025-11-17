@@ -28,9 +28,9 @@ const geometry = updateGeometry({ geom: 'customGeometry' })
 bootstrapGeometryScene({
   geometry,
   provideGui: (gui, mesh) => {
-    const folder = gui.addFolder('THREE.PolyhedronGeometry')
-    folder.add(props, 'geom', getObjectsKeys(geometries)).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'radius', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'detail', 0, 4, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
+    const folder = gui.addFolder('多面几何体')
+    folder.add(props, 'geom', getObjectsKeys(geometries)).name('几何体类型').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'radius', 0, 10, 0.01).name('半径').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'detail', 0, 4, 1).name('细节').onChange(() => updateMesh(mesh, updateGeometry(props)))
   }
 }).then()

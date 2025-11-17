@@ -19,11 +19,11 @@ const geometry = updateGeometry(props)
 bootstrapGeometryScene({
   geometry,
   provideGui: (gui, mesh) => {
-    const folder = gui.addFolder('THREE.TubeGeometry')
-    folder.add(props, 'radius', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'tube', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'radialSegments', 1, 20, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'tubularSegments', 1, 40, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'arc', 0, 2 * Math.PI, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
+    const folder = gui.addFolder('管道几何体')
+    folder.add(props, 'radius', 0, 10, 0.01).name('半径').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'tube', 0, 10, 0.01).name('管道半径').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'radialSegments', 1, 20, 1).name('径向分割').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'tubularSegments', 1, 40, 1).name('管道分割').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'arc', 0, 2 * Math.PI, 0.01).name('管道弧度').onChange(() => updateMesh(mesh, updateGeometry(props)))
   }
 }).then()

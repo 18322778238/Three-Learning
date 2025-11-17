@@ -20,11 +20,11 @@ const geometry = updateGeometry(props)
 bootstrapGeometryScene({
   geometry,
   provideGui: (gui, mesh) => {
-    const folder = gui.addFolder('THREE.TorusKnotGeometry')
-    folder.add(props, 'radius', 0, 3, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'tube', 0, 3, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'radialSegments', 1, 200, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'tubularSegments', 1, 40, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
+    const folder = gui.addFolder('圆环结几何体')
+    folder.add(props, 'radius', 0, 3, 0.01).name('半径').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'tube', 0, 3, 0.01).name('管道半径').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'radialSegments', 1, 200, 1).name('径向分割').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'tubularSegments', 1, 40, 1).name('管道分割').onChange(() => updateMesh(mesh, updateGeometry(props)))
     folder.add(props, 'p', 1, 10, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
     folder.add(props, 'q', 1, 10, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
   }

@@ -42,8 +42,8 @@ const geometry = updateGeometry(props)
 bootstrapGeometryScene({
   geometry,
   provideGui: (gui, mesh) => {
-    const folder = gui.addFolder('THREE.ShapeGeometry')
-    folder.add(props, 'curveSegments', 1, 30, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
+    const folder = gui.addFolder('形状几何体')
+    folder.add(props, 'curveSegments', 1, 30, 1).name('曲线分割').onChange(() => updateMesh(mesh, updateGeometry(props)))
   },
   hidefloor: true
 }).then()

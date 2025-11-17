@@ -22,13 +22,13 @@ const geometry = updateGeometry(props)
 bootstrapGeometryScene({
   geometry,
   provideGui: (gui, mesh) => {
-    const folder = gui.addFolder('THREE.ConeGeometry')
-    folder.add(props, 'radius', -10, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'height', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'radialSegments', 1, 100, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'heightSegments', 1, 100, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'openEnded').onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'thetaStart', 0, Math.PI, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'thetaLength', 0, 2 * Math.PI, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
+    const folder = gui.addFolder('锥体几何体')
+    folder.add(props, 'radius', -10, 10, 0.01).name('半径').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'height', 0, 10, 0.01).name('高度').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'radialSegments', 1, 100, 1).name('径向分割').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'heightSegments', 1, 100, 1).name('高度分割').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'openEnded').name('是否开启').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'thetaStart', 0, Math.PI, 0.01).name('起始角度').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'thetaLength', 0, 2 * Math.PI, 0.01).name('结束角度').onChange(() => updateMesh(mesh, updateGeometry(props)))
   }
 }).then()

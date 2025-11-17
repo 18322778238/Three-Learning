@@ -21,12 +21,12 @@ const geometry = updateGeometry(props)
 bootstrapGeometryScene({
   geometry,
   provideGui: (gui, mesh) => {
-    const folder = gui.addFolder('THREE.RingGeometry')
-    folder.add(props, 'innerRadius', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'outerRadius', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'thetaSegments', 0, 50, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'phiSegments', 0, 50, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'thetaStart', 0, 2 * Math.PI, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'thetaLength', 0, 2 * Math.PI, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
+    const folder = gui.addFolder('圆环几何体')
+    folder.add(props, 'innerRadius', 0, 10, 0.01).name('内半径').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'outerRadius', 0, 10, 0.01).name('外半径').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'thetaSegments', 0, 50, 1).name('径向分割').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'phiSegments', 0, 50, 1).name('高度分割').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'thetaStart', 0, 2 * Math.PI, 0.01).name('起始角度').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'thetaLength', 0, 2 * Math.PI, 0.01).name('结束角度').onChange(() => updateMesh(mesh, updateGeometry(props)))
   }
 }).then()

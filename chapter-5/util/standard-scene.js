@@ -3,11 +3,11 @@ import { initScene } from '../../bootstrap/bootstrap'
 import { intializeRendererControls } from '../../controls/renderer-control'
 
 import GUI from 'lil-gui'
-import { initializeGuiMaterial, initializeGuiMeshStandardMaterial } from '../../controls/material-controls'
-import { initializeSceneControls } from '../../controls/scene-controls'
 import * as THREE from 'three'
 import { foreverPlane } from '../../bootstrap/floor'
+import { initializeGuiMaterial, initializeGuiMeshStandardMaterial } from '../../controls/material-controls'
 import { initializeMeshVisibleControls } from '../../controls/mesh-visible-controls'
+import { initializeSceneControls } from '../../controls/scene-controls'
 
 export const bootstrapGeometryScene = async ({ geometry, provideGui, hidefloor }) => {
   const props = {
@@ -15,7 +15,7 @@ export const bootstrapGeometryScene = async ({ geometry, provideGui, hidefloor }
     fogColor: 0xffffff
   }
 
-  const gui = new GUI()
+  const gui = new GUI({ title: '控制器' })
 
   const init = async () => {
     const material = new THREE.MeshStandardMaterial({
@@ -45,7 +45,7 @@ export const bootstrapGeometryScene = async ({ geometry, provideGui, hidefloor }
 
       initializeGuiMaterial(gui, mesh, material).close()
       initializeGuiMeshStandardMaterial(gui, mesh, material).close()
-      hidefloor ?? initializeMeshVisibleControls(gui, plane, 'Floor')
+      hidefloor ?? initializeMeshVisibleControls(gui, plane, '地板')
       provideGui(gui, mesh)
     })
   }

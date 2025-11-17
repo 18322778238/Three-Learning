@@ -51,7 +51,7 @@ p.then((svg) => {
   bootstrapGeometryScene({
     geometry: updateGeometry(props),
     provideGui: (gui, mesh) => {
-      const folder = gui.addFolder('THREE.ExtrudeGeometry')
+      const folder = gui.addFolder('拉伸几何体')
       folder.add(props, 'curveSegments', 1, 30, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
       folder.add(props, 'amount', 1, 400, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
       folder.add(props, 'steps', 10, 300, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))

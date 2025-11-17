@@ -53,11 +53,12 @@ bootstrapGeometryScene({
   geometry,
   provideGui: (gui, mesh, scene) => {
     updateMesh(mesh, updateGeometry(props, scene))
-    const folder = gui.addFolder('THREE.LatheGeometry')
-    folder.add(props, 'segments', 1, 30, 1).onChange(() => updateMesh(mesh, updateGeometry(props), scene))
-    folder.add(props, 'phiStart', 0, 2 * Math.PI, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props), scene))
+    const folder = gui.addFolder('车床几何体')
+    folder.add(props, 'segments', 1, 30, 1).name('分割数').onChange(() => updateMesh(mesh, updateGeometry(props), scene))
+    folder.add(props, 'phiStart', 0, 2 * Math.PI, 0.01).name('起始角度').onChange(() => updateMesh(mesh, updateGeometry(props), scene))
     folder
       .add(props, 'phiLength', 1, 2 * Math.PI, 1, 0.01)
+      .name('旋转角度')
       .onChange(() => updateMesh(mesh, updateGeometry(props), scene))
   }
 }).then()

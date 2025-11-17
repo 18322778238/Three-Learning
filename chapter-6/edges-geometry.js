@@ -1,7 +1,7 @@
-import { bootstrapGeometryScene } from './util/standard-scene'
-import { updateMesh } from './util'
 import * as THREE from 'three'
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry'
+import { updateMesh } from './util'
+import { bootstrapGeometryScene } from './util/standard-scene'
 
 const props = {
   thresholdAngle: 1 // 边缘检测的角度阈值（单位：度）
@@ -11,6 +11,7 @@ const props = {
 // const baseGeometry = new THREE.BoxGeometry(3, 3, 3)
 // 基础几何体 - 圆角立方体
 const baseGeometry = new RoundedBoxGeometry(3, 3, 3, 10, 0.4)
+
 
 const updateGeometry = ({ thresholdAngle }) => {
   return new THREE.EdgesGeometry(baseGeometry, thresholdAngle)

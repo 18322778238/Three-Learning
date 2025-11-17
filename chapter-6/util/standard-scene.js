@@ -15,7 +15,7 @@ export const bootstrapGeometryScene = async ({ geometry, provideGui, hidefloor }
     fogColor: 0xffffff
   }
 
-  const gui = new GUI()
+  const gui = new GUI({title: '控制器'})
 
   const init = async () => {
     const material = new THREE.MeshStandardMaterial({
@@ -45,7 +45,7 @@ export const bootstrapGeometryScene = async ({ geometry, provideGui, hidefloor }
 
       initializeGuiMaterial(gui, mesh, material).close()
       initializeGuiMeshStandardMaterial(gui, mesh, material).close()
-      hidefloor ?? initializeMeshVisibleControls(gui, plane, 'Floor')
+      hidefloor ?? initializeMeshVisibleControls(gui, plane, '关闭地面')
       provideGui(gui, mesh)
     })
   }

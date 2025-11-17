@@ -52,7 +52,7 @@ bootstrapGeometryScene({
   geometry,
   provideGui: (gui, mesh, scene) => {
     updateMesh(mesh, updateGeometry(scene))
-    const folder = gui.addFolder('THREE.ConvexGeometry')
+    const folder = gui.addFolder('凸包几何体')
     folder.add({ redraw: () => updateMesh(mesh, updateGeometry(scene)) }, 'redraw')
   }
 }).then()

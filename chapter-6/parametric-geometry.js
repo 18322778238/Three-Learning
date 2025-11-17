@@ -1,8 +1,7 @@
 // 参数化几何体(ParametricGeometry)生成器
 import { bootstrapGeometryScene } from './util/standard-scene'
 import { updateMesh } from './util'
-import { ParametricGeometry } from 'three/examples/jsm/geometries/ParametricGeometry'
-import { ParametricGeometries } from 'three/examples/jsm/geometries/ParametricGeometries'
+import { ParametricGeometry, ParametricGeometries } from 'three-stdlib'
 import * as THREE from 'three'
 import { getObjectsKeys } from '../util'
 
@@ -51,9 +50,9 @@ bootstrapGeometryScene({
   geometry,
   provideGui: (gui, mesh) => {
     mesh.material.side = THREE.DoubleSide
-    const folder = gui.addFolder('THREE.ParametricGeometry')
-    folder.add(props, 'slices', 1, 100, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'stacks', 1, 100, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'func', getObjectsKeys(funcs)).onChange(() => updateMesh(mesh, updateGeometry(props)))
+    const folder = gui.addFolder('参数几何体')
+    folder.add(props, 'slices', 1, 100, 1).name('切片').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'stacks', 1, 100, 1).name('栈').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'func', getObjectsKeys(funcs)).name('函数').onChange(() => updateMesh(mesh, updateGeometry(props)))
   }
 }).then()

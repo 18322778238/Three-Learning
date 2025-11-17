@@ -20,11 +20,11 @@ const geometry = updateGeometry(props)
 bootstrapGeometryScene({
   geometry,
   provideGui: (gui, mesh) => {
-    const folder = gui.addFolder('THREE.RoundedBoxGeometry')
-    folder.add(props, 'width', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'height', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'depth', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'segments', 1, 20, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'radius', 0, 3, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
+    const folder = gui.addFolder('圆角盒几何体')
+    folder.add(props, 'width', 0, 10, 0.01).name('宽度').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'height', 0, 10, 0.01).name('高度').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'depth', 0, 10, 0.01).name('深度').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'segments', 1, 20, 1).name('分割数').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'radius', 0, 3, 0.01).name('半径').onChange(() => updateMesh(mesh, updateGeometry(props)))
   }
 }).then()

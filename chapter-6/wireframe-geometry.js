@@ -4,7 +4,7 @@ import * as THREE from 'three'
 
 const props = {}
 
-const baseGeometry = new THREE.TorusKnotBufferGeometry(3, 1, 100, 20, 6, 9)
+const baseGeometry = new THREE.TorusKnotGeometry(3, 1, 100, 20, 6, 9)
 
 const updateGeometry = () => {
   return new THREE.WireframeGeometry(baseGeometry)

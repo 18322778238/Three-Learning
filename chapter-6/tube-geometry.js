@@ -64,11 +64,11 @@ bootstrapGeometryScene({
   geometry,
   provideGui: (gui, mesh, scene) => {
     updateMesh(mesh, updateGeometry(props, scene))
-    const folder = gui.addFolder('THREE.TubeGeometry')
-    folder.add(props, 'numberOfPoints', 0, 40, 1).onChange(() => updateMesh(mesh, updateGeometry(props, scene)))
-    folder.add(props, 'tubularSegments', 0, 400, 1).onChange(() => updateMesh(mesh, updateGeometry(props, scene)))
-    folder.add(props, 'radius', 0, 2, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props, scene)))
-    folder.add(props, 'radiusSegments', 0, 40, 1).onChange(() => updateMesh(mesh, updateGeometry(props, scene)))
-    folder.add(props, 'closed').onChange(() => updateMesh(mesh, updateGeometry(props, scene)))
+    const folder = gui.addFolder('管道几何体')
+    folder.add(props, 'numberOfPoints', 0, 40, 1).name('点数').onChange(() => updateMesh(mesh, updateGeometry(props, scene)))
+    folder.add(props, 'tubularSegments', 0, 400, 1).name('切片数').onChange(() => updateMesh(mesh, updateGeometry(props, scene)))
+    folder.add(props, 'radius', 0, 2, 0.01).name('半径').onChange(() => updateMesh(mesh, updateGeometry(props, scene)))
+    folder.add(props, 'radiusSegments', 0, 40, 1).name('半径切片数').onChange(() => updateMesh(mesh, updateGeometry(props, scene)))
+    folder.add(props, 'closed').name('闭合').onChange(() => updateMesh(mesh, updateGeometry(props, scene)))
   }
 }).then()

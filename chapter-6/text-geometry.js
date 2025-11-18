@@ -50,22 +50,26 @@ new FontLoader()
     bootstrapGeometryScene({
       geometry: updateGeometry({ font, ...props }),
       provideGui: (gui, mesh) => {
-        const folder = gui.addFolder('THREE.TextGeometry')
-        folder.add(props, 'size', 1, 30, 1).onChange(() => updateMesh(mesh, updateGeometry({ font, ...props })))
-        folder.add(props, 'height', 1, 30, 1).onChange(() => updateMesh(mesh, updateGeometry({ font, ...props })))
+        const folder = gui.addFolder('文本几何体')
+        folder.add(props, 'size', 1, 30, 1).name('大小').onChange(() => updateMesh(mesh, updateGeometry({ font, ...props })))
+        folder.add(props, 'height', 1, 30, 1).name('高度').onChange(() => updateMesh(mesh, updateGeometry({ font, ...props })))
         folder
           .add(props, 'curveSegments', 1, 30, 1)
+          .name('曲线段数')
           .onChange(() => updateMesh(mesh, updateGeometry({ font, ...props })))
-        folder.add(props, 'bevelEnabled').onChange(() => updateMesh(mesh, updateGeometry({ font, ...props })))
+        folder.add(props, 'bevelEnabled').name('是否开启斜面').onChange(() => updateMesh(mesh, updateGeometry({ font, ...props })))
         folder
           .add(props, 'bevelThickness', 0, 1, 0.01)
+          .name('斜面厚度')
           .onChange(() => updateMesh(mesh, updateGeometry({ font, ...props })))
-        folder.add(props, 'bevelSize', 0, 3, 0.01).onChange(() => updateMesh(mesh, updateGeometry({ font, ...props })))
+        folder.add(props, 'bevelSize', 0, 3, 0.01).name('斜面大小').onChange(() => updateMesh(mesh, updateGeometry({ font, ...props })))
         folder
           .add(props, 'bevelOffset', 0, 3, 0.01)
+          .name('斜面偏移')
           .onChange(() => updateMesh(mesh, updateGeometry({ font, ...props })))
         folder
           .add(props, 'bevelSegments', 1, 30, 1)
+          .name('斜面段数')
           .onChange(() => updateMesh(mesh, updateGeometry({ font, ...props })))
       }
     })

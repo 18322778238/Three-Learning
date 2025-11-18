@@ -2,11 +2,11 @@
 // npm install troika-three-text
 import { Text } from 'troika-three-text'
 import * as THREE from 'three'
-import { initScene } from '../../bootstrap/bootstrap'
-import { intializeRendererControls } from '../../controls/renderer-control'
+import { initScene } from '../bootstrap/bootstrap'
+import { intializeRendererControls } from '../controls/renderer-control'
 
 import GUI from 'lil-gui'
-import { initializeSceneControls } from '../../controls/scene-controls'
+import { initializeSceneControls } from '../controls/scene-controls'
 
 const props = {
   backgroundColor: 0xffffff,

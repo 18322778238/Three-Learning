@@ -22,13 +22,13 @@ const geometry = updateGeometry(props)
 bootstrapGeometryScene({
   geometry,
   provideGui: (gui, mesh) => {
-    const folder = gui.addFolder('THREE.TeapotGeometry')
-    folder.add(props, 'size', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'segments', 1, 30, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'bottom', 0, 10, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'lid', 1, 20, 1).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'body', 0, 3, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'fitLid', 0, 3, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
-    folder.add(props, 'blinn', 0, 3, 0.01).onChange(() => updateMesh(mesh, updateGeometry(props)))
+    const folder = gui.addFolder('茶壶几何形状')
+    folder.add(props, 'size', 0, 10, 0.01).name('大小').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'segments', 1, 30, 1).name('分割数').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'bottom', 0, 10, 0.01).name('底部').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'lid', 1, 20, 1).name('盖子').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'body', 0, 3, 0.01).name('主体').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'fitLid', 0, 3, 0.01).name('盖子').onChange(() => updateMesh(mesh, updateGeometry(props)))
+    folder.add(props, 'blinn', 0, 3, 0.01).name('Blinn').onChange(() => updateMesh(mesh, updateGeometry(props)))
   }
 }).then()

@@ -1,26 +1,31 @@
 {
-  "name": "three",
+  "name": "tutorial-1",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "vite.config.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/18322778238/Three-Learning.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.19.0",
+  "bugs": {
+    "url": "https://github.com/18322778238/Three-Learning/issues"
+  },
+  "homepage": "https://github.com/18322778238/Three-Learning#readme",
   "dependencies": {
     "@types/three": "^0.181.0",
     "lil-gui": "^0.21.0",
-    "three": "^0.181.0",
+    "three": "^0.181.1",
     "three-custom-shader-material": "^6.4.0",
     "three-stdlib": "^2.36.1",
     "troika-three-text": "^0.52.4"
   },
   "devDependencies": {
-    "vite": "^7.2.1"
+    "vite": "^7.2.2"
   }
 }
